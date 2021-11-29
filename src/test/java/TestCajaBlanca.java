@@ -53,4 +53,52 @@ public class TestCajaBlanca {
         assertEquals("[Z]",l1);
         assertEquals("[B]",l2);
     }
+    @Test
+    public void testMayorLongitudCP1(){
+        Editor editor=new Editor();
+        String L= null;
+        try {
+            L = editor.mayorLongitud();
+        }catch (EmptyCollectionException e){
+            System.out.println("Error");
+        }
+        assertEquals(null,L,"El método devuelve: "+ L +", en vez de null");
+
+    }
+    @Test
+    public void testMayorLongitudCP4(){
+        Editor editor=new Editor();
+        editor.leerFichero("ConfiguracionUnElem.txt");
+        String L= null;
+        try {
+            L = editor.mayorLongitud();
+        }catch (EmptyCollectionException e){
+            System.out.println("Error");
+        }
+        assertEquals("A",L,"El método devuelve: "+ L +", en vez de A");
+    }
+    @Test
+    public void testMayorLongitudCP5(){
+        Editor editor=new Editor();
+        editor.leerFichero("ConfiguracionCasoPrueba5_MayorLongitud.txt");
+        String L= null;
+        try {
+            L = editor.mayorLongitud();
+        }catch (EmptyCollectionException e){
+            System.out.println("Error");
+        }
+        assertEquals("AB",L,"El método devuelve: "+ L +", en vez de AB");
+    }
+    @Test
+    public void testMayorLongitudCP6(){
+        Editor editor=new Editor();
+        editor.leerFichero("ConfiguracionCasoPrueba6_MayorLongitud.txt");
+        String L= null;
+        try {
+            L = editor.mayorLongitud();
+        }catch (EmptyCollectionException e){
+            System.out.println("Error");
+        }
+        assertEquals("AB",L,"El método devuelve: "+ L +", en vez de AB");
+    }
 }
