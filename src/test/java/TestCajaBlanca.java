@@ -1,8 +1,12 @@
 import com.cajanegra.EmptyCollectionException;
 import com.practica.cajablanca.Editor;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLOutput;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestCajaBlanca {
     @Test
@@ -101,4 +105,95 @@ public class TestCajaBlanca {
         }
         assertEquals("AB",L,"El método devuelve: "+ L +", en vez de AB");
     }
+    @Nested
+    public class numPalabrasTest{
+        @Test
+        public void testNumPalabrasCP1(){
+            Editor editor = new Editor();
+            editor.leerFichero("NumPalabrasVacio.txt");
+            try {
+                assertThrows(IllegalArgumentException.class, () -> {
+                    editor.numPalabras(0, 1, "California");
+                });
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Error");
+            }
+        }
+        @Test
+        public void testNumPalabrasCP2(){
+            Editor editor = new Editor();
+            editor.leerFichero("NumPalabras1.txt");
+            int numPalabras = -1;
+            try {
+                assertThrows(IllegalArgumentException.class, () -> {
+                    editor.numPalabras(1, editor.size() + 1, "California");
+                });
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Error");
+            }
+        }
+        @Test
+        public void testNumPalabrasCP3(){
+            Editor editor = new Editor();
+            editor.leerFichero("NumPalabrasVacio.txt");
+            int numPalabras = 0;
+            try {
+                numPalabras = editor.numPalabras(1, 0 , "California");
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Error");
+            }
+            finally{
+                assertEquals(0, numPalabras, "El método devuelve " + numPalabras);
+            }
+        }
+        @Test
+        public void testNumPalabrasCP4(){
+            Editor editor = new Editor();
+            editor.leerFichero("NumPalabras1.txt");
+            int numPalabras = 0;
+            try {
+                numPalabras = editor.numPalabras(2, 1 , "California");
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Error");
+            }
+            finally{
+                assertEquals(0, numPalabras, "El método devuelve " + numPalabras);
+            }
+        }
+        @Test
+        public void testNumPalabrasCP5(){
+            Editor editor = new Editor();
+            editor.leerFichero("NumPalabras1.txt");
+            int numPalabras = 0;
+            try {
+                numPalabras = editor.numPalabras(1, 2 , "California");
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Error");
+            }
+            finally{
+                assertEquals(0, numPalabras, "El método devuelve " + numPalabras);
+            }
+        }
+        @Test
+        public void testNumPalabrasCP6(){
+            Editor editor = new Editor();
+            editor.leerFichero("NumPalabras1.txt");
+            int numPalabras = 0;
+            try {
+                numPalabras = editor.numPalabras(1, 2 , "Alabama");
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("Error");
+            }
+            finally{
+                assertEquals(1, numPalabras, "El método devuelve " + numPalabras);
+            }
+        }
+    }
+
 }
