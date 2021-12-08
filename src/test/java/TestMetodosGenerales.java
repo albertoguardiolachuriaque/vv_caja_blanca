@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestMétodosGenerales {
+public class TestMetodosGenerales {
     @Test
-    void testLeerFicheroCP1(){
+    void testLeerFicheroUnElem(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionUnElem.txt");
         String l1 = null;
@@ -18,7 +18,7 @@ public class TestMétodosGenerales {
         assertEquals("[A]",l1);
     }
     @Test
-    void testLeerFicheroCP2(){
+    void testLeerFicheroVariosElem(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionVariosElem.txt");
         String l1 = null;
@@ -33,52 +33,52 @@ public class TestMétodosGenerales {
         assertEquals("[B]",l2);
     }
     @Test
-    void testSizeCP1(){
+    void testSizeUnElem(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionUnElem.txt");
         assertEquals(1,editor.size());
     }
     @Test
-    void testSizaCP2(){
+    void testSizeVariosElem(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionVariosElem.txt");
         assertEquals(2,editor.size());
     }
     @Test
-    void testSizaCP3(){
+    void testSizeNoElem(){
         Editor editor= new Editor();
         assertEquals(0,editor.size());
     }
     @Test
-    void testEditorIsEmptyCP1(){
+    void testEditorIsEmptyVacio(){
         Editor editor= new Editor();
         assertEquals(true,editor.editIsEmpty());
     }
     @Test
-    void testEditorIsEmptyCP2(){
+    void testEditorIsEmptyNoVacio(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionUnElem.txt");
         assertEquals(false,editor.editIsEmpty());
     }
     @Test
-    void testGetLineaCP1(){
+    void testGetLineaVacia(){
         Editor editor= new Editor();
         assertThrows(EmptyCollectionException.class,()->{editor.getLinea(1);});
     }
     @Test
-    void testGetLineaCP2(){
+    void testGetLineaNegativa(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionUnElem.txt");
         assertThrows(IllegalArgumentException.class,()->{editor.getLinea(-1);});
     }
     @Test
-    void testGetLineaCP3(){
+    void testGetLineaAlta(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionUnElem.txt");
         assertThrows(IllegalArgumentException.class,()->{editor.getLinea(125);});
     }
     @Test
-    void testGetLineaCP4(){
+    void testGetLineaValida(){
         Editor editor= new Editor();
         editor.leerFichero("ConfiguracionUnElem.txt");
         String l1=null;
@@ -88,6 +88,35 @@ public class TestMétodosGenerales {
             System.out.println("Error");
         };
         assertEquals("[A]",l1);
+    }
+    @Test
+    void testNumPalabrasVacio(){
+        Editor editor= new Editor();
+        assertThrows(EmptyCollectionException.class,()->{editor.numPalabras();});
+    }
+    @Test
+    void testNumPalabrasUna(){
+        Editor editor= new Editor();
+        int l1=0;
+        editor.leerFichero("ConfiguracionUnElem.txt");
+        try {
+            l1 = editor.numPalabras();
+        }catch (EmptyCollectionException e){
+            System.out.println("Error");
+        };
+        assertEquals(1,l1);
+    }
+    @Test
+    void testNumPalabrasVarias(){
+        Editor editor= new Editor();
+        int l1=0;
+        editor.leerFichero("ConfiguracionVariosElem.txt");
+        try {
+            l1 = editor.numPalabras();
+        }catch (EmptyCollectionException e){
+            System.out.println("Error");
+        };
+        assertEquals(2,l1);
     }
 
 
