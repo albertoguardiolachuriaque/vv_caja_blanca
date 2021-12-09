@@ -1,5 +1,5 @@
 # Verificación y Validación del Software 2021
-GRUPO IWx-4x ``<- Modificar``
+GRUPO IWM-42-5
 
 ## Instrucciones para utilizar este proyecto
 
